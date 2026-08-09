@@ -45,17 +45,18 @@ function HomePage() {
 
       <GlassCard glow="brand" className="animate-rise flex items-center justify-between">
         <div className="relative">
-          <Ring value={rings[0].value} goal={rings[0].goal} size={116} stroke={9} color="var(--primary)">
-            <span className="num text-lg font-bold">{Math.round((rings[0].value / rings[0].goal) * 100)}%</span>
+          <Ring value={1840} goal={2650} size={116} stroke={9} color="var(--primary)">
+            <span className="num text-lg font-bold">69%</span>
             <span className="text-[10px] text-muted-foreground">of day</span>
           </Ring>
           <div className="absolute inset-0 flex items-center justify-center">
-            <Ring value={rings[1].value} goal={rings[1].goal} size={92} stroke={8} color="var(--secondary)">
+            <Ring value={118} goal={165} size={92} stroke={8} color="var(--secondary)">
               <span />
             </Ring>
           </div>
           <div className="absolute inset-0 flex items-center justify-center">
-            <Ring value={rings[2].value} goal={rings[2].goal} size={68} stroke={7} color="#38bdf8">
+            <Ring value={6} goal={8} size={68} stroke={7} color="#38bdf8">
+
               <span />
             </Ring>
           </div>
