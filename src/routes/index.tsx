@@ -59,13 +59,14 @@ const aiSteps = [
 function Onboarding() {
   const navigate = useNavigate();
   const [step, setStep] = useState(0);
-  const [pick, setPick] = useState<Record<string, string>>({
+  const [pick, setPick] = useState({
     goal: "muscle",
     activity: "act",
     diet: "indian",
     exp: "int",
     time: "Evening",
   });
+
   const [info, setInfo] = useState({ age: "27", height: "178", weight: "77.3", gender: "Male" });
   const [life, setLife] = useState({ sleep: 7, stress: 4, medical: "None" });
   const [aiIdx, setAiIdx] = useState(0);
