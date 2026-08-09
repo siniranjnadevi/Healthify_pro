@@ -132,16 +132,16 @@ function Onboarding() {
       {step === 1 && (
         <Step title="Tell us about you" sub="We use this to calculate your energy needs.">
           <div className="grid grid-cols-2 gap-3">
-            {[
-              ["Age", "age", "yrs"],
-              ["Height", "height", "cm"],
-              ["Weight", "weight", "kg"],
-            ].map(([label, key, unit]) => (
+            {([
+              { label: "Age", key: "age", unit: "yrs" },
+              { label: "Height", key: "height", unit: "cm" },
+              { label: "Weight", key: "weight", unit: "kg" },
+            ] as const).map(({ label, key, unit }) => (
               <GlassCard key={key} className="p-3">
                 <div className="text-[11px] text-muted-foreground">{label}</div>
                 <div className="flex items-baseline gap-1">
                   <input
-                    value={info[key as keyof typeof info]}
+                    value={info[key]}
                     onChange={(e) => setInfo({ ...info, [key]: e.target.value })}
                     className="num w-full bg-transparent text-2xl font-bold outline-none"
                   />
@@ -149,6 +149,7 @@ function Onboarding() {
                 </div>
               </GlassCard>
             ))}
+
             <GlassCard className="p-3">
               <div className="mb-2 text-[11px] text-muted-foreground">Gender</div>
               <div className="flex gap-1.5">
