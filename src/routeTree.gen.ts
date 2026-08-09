@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as WorkoutIndexRouteImport } from './routes/workout.index'
+import { Route as WorkoutActiveRouteImport } from './routes/workout.active'
+import { Route as WorkoutSummaryRouteImport } from './routes/workout.summary'
 import { Route as WorkoutExerciseExerciseIdRouteImport } from './routes/workout.exercise.$exerciseId'
 
 const IndexRoute = IndexRouteImport.update({
@@ -29,6 +31,16 @@ const WorkoutIndexRoute = WorkoutIndexRouteImport.update({
   path: '/workout/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WorkoutActiveRoute = WorkoutActiveRouteImport.update({
+  id: '/workout/active',
+  path: '/workout/active',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkoutSummaryRoute = WorkoutSummaryRouteImport.update({
+  id: '/workout/summary',
+  path: '/workout/summary',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WorkoutExerciseExerciseIdRoute =
   WorkoutExerciseExerciseIdRouteImport.update({
     id: '/workout/exercise/$exerciseId',
@@ -39,12 +51,16 @@ const WorkoutExerciseExerciseIdRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/home': typeof HomeRoute
+  '/workout/active': typeof WorkoutActiveRoute
+  '/workout/summary': typeof WorkoutSummaryRoute
   '/workout/': typeof WorkoutIndexRoute
   '/workout/exercise/$exerciseId': typeof WorkoutExerciseExerciseIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/home': typeof HomeRoute
+  '/workout/active': typeof WorkoutActiveRoute
+  '/workout/summary': typeof WorkoutSummaryRoute
   '/workout': typeof WorkoutIndexRoute
   '/workout/exercise/$exerciseId': typeof WorkoutExerciseExerciseIdRoute
 }
@@ -52,20 +68,43 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/home': typeof HomeRoute
+  '/workout/active': typeof WorkoutActiveRoute
+  '/workout/summary': typeof WorkoutSummaryRoute
   '/workout/': typeof WorkoutIndexRoute
   '/workout/exercise/$exerciseId': typeof WorkoutExerciseExerciseIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/home' | '/workout/' | '/workout/exercise/$exerciseId'
+  fullPaths:
+    | '/'
+    | '/home'
+    | '/workout/active'
+    | '/workout/summary'
+    | '/workout/'
+    | '/workout/exercise/$exerciseId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/home' | '/workout' | '/workout/exercise/$exerciseId'
-  id: '__root__' | '/' | '/home' | '/workout/' | '/workout/exercise/$exerciseId'
+  to:
+    | '/'
+    | '/home'
+    | '/workout/active'
+    | '/workout/summary'
+    | '/workout'
+    | '/workout/exercise/$exerciseId'
+  id:
+    | '__root__'
+    | '/'
+    | '/home'
+    | '/workout/active'
+    | '/workout/summary'
+    | '/workout/'
+    | '/workout/exercise/$exerciseId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   HomeRoute: typeof HomeRoute
+  WorkoutActiveRoute: typeof WorkoutActiveRoute
+  WorkoutSummaryRoute: typeof WorkoutSummaryRoute
   WorkoutIndexRoute: typeof WorkoutIndexRoute
   WorkoutExerciseExerciseIdRoute: typeof WorkoutExerciseExerciseIdRoute
 }
@@ -93,6 +132,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkoutIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/workout/active': {
+      id: '/workout/active'
+      path: '/workout/active'
+      fullPath: '/workout/active'
+      preLoaderRoute: typeof WorkoutActiveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/workout/summary': {
+      id: '/workout/summary'
+      path: '/workout/summary'
+      fullPath: '/workout/summary'
+      preLoaderRoute: typeof WorkoutSummaryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/workout/exercise/$exerciseId': {
       id: '/workout/exercise/$exerciseId'
       path: '/workout/exercise/$exerciseId'
@@ -106,6 +159,8 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   HomeRoute: HomeRoute,
+  WorkoutActiveRoute: WorkoutActiveRoute,
+  WorkoutSummaryRoute: WorkoutSummaryRoute,
   WorkoutIndexRoute: WorkoutIndexRoute,
   WorkoutExerciseExerciseIdRoute: WorkoutExerciseExerciseIdRoute,
 }
