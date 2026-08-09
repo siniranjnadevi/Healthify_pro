@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as HomeRouteImport } from './routes/home'
+import { Route as NutritionRouteImport } from './routes/nutrition'
+import { Route as ProgressRouteImport } from './routes/progress'
 import { Route as WorkoutIndexRouteImport } from './routes/workout.index'
 import { Route as WorkoutActiveRouteImport } from './routes/workout.active'
 import { Route as WorkoutSummaryRouteImport } from './routes/workout.summary'
@@ -24,6 +26,16 @@ const IndexRoute = IndexRouteImport.update({
 const HomeRoute = HomeRouteImport.update({
   id: '/home',
   path: '/home',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NutritionRoute = NutritionRouteImport.update({
+  id: '/nutrition',
+  path: '/nutrition',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProgressRoute = ProgressRouteImport.update({
+  id: '/progress',
+  path: '/progress',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WorkoutIndexRoute = WorkoutIndexRouteImport.update({
@@ -51,6 +63,8 @@ const WorkoutExerciseExerciseIdRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/home': typeof HomeRoute
+  '/nutrition': typeof NutritionRoute
+  '/progress': typeof ProgressRoute
   '/workout/active': typeof WorkoutActiveRoute
   '/workout/summary': typeof WorkoutSummaryRoute
   '/workout/': typeof WorkoutIndexRoute
@@ -59,6 +73,8 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/home': typeof HomeRoute
+  '/nutrition': typeof NutritionRoute
+  '/progress': typeof ProgressRoute
   '/workout/active': typeof WorkoutActiveRoute
   '/workout/summary': typeof WorkoutSummaryRoute
   '/workout': typeof WorkoutIndexRoute
@@ -68,6 +84,8 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/home': typeof HomeRoute
+  '/nutrition': typeof NutritionRoute
+  '/progress': typeof ProgressRoute
   '/workout/active': typeof WorkoutActiveRoute
   '/workout/summary': typeof WorkoutSummaryRoute
   '/workout/': typeof WorkoutIndexRoute
@@ -78,6 +96,8 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/home'
+    | '/nutrition'
+    | '/progress'
     | '/workout/active'
     | '/workout/summary'
     | '/workout/'
@@ -86,6 +106,8 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/home'
+    | '/nutrition'
+    | '/progress'
     | '/workout/active'
     | '/workout/summary'
     | '/workout'
@@ -94,6 +116,8 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/home'
+    | '/nutrition'
+    | '/progress'
     | '/workout/active'
     | '/workout/summary'
     | '/workout/'
@@ -103,6 +127,8 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   HomeRoute: typeof HomeRoute
+  NutritionRoute: typeof NutritionRoute
+  ProgressRoute: typeof ProgressRoute
   WorkoutActiveRoute: typeof WorkoutActiveRoute
   WorkoutSummaryRoute: typeof WorkoutSummaryRoute
   WorkoutIndexRoute: typeof WorkoutIndexRoute
@@ -123,6 +149,20 @@ declare module '@tanstack/react-router' {
       path: '/home'
       fullPath: '/home'
       preLoaderRoute: typeof HomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nutrition': {
+      id: '/nutrition'
+      path: '/nutrition'
+      fullPath: '/nutrition'
+      preLoaderRoute: typeof NutritionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/progress': {
+      id: '/progress'
+      path: '/progress'
+      fullPath: '/progress'
+      preLoaderRoute: typeof ProgressRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/workout/': {
@@ -159,6 +199,8 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   HomeRoute: HomeRoute,
+  NutritionRoute: NutritionRoute,
+  ProgressRoute: ProgressRoute,
   WorkoutActiveRoute: WorkoutActiveRoute,
   WorkoutSummaryRoute: WorkoutSummaryRoute,
   WorkoutIndexRoute: WorkoutIndexRoute,
