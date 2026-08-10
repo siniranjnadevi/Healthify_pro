@@ -67,7 +67,7 @@ function Onboarding() {
     time: "Evening",
   });
 
-  const [info, setInfo] = useState({ age: "27", height: "178", weight: "77.3", gender: "Male" });
+  const [info, setInfo] = useState({ name: "Arjun", age: "27", height: "178", weight: "77.3", gender: "Male" });
   const [life, setLife] = useState({ sleep: 7, stress: 4, medical: "None" });
   const [aiIdx, setAiIdx] = useState(0);
 
