@@ -131,6 +131,15 @@ function Onboarding() {
 
       {step === 1 && (
         <Step title="Tell us about you" sub="We use this to calculate your energy needs.">
+          <GlassCard className="mb-3 p-3">
+            <div className="text-[11px] text-muted-foreground">Your name</div>
+            <input
+              value={info.name}
+              onChange={(e) => setInfo({ ...info, name: e.target.value })}
+              placeholder="Enter your name"
+              className="num w-full bg-transparent text-2xl font-bold outline-none placeholder:text-white/20"
+            />
+          </GlassCard>
           <div className="grid grid-cols-2 gap-3">
             {([
               { label: "Age", key: "age", unit: "yrs" },
