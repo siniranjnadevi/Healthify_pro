@@ -1,5 +1,4 @@
 import { UserNameProvider } from "@/lib/user-name";
-import { UserNameProvider } from "@/lib/user-name";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,

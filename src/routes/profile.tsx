@@ -1,8 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import { AppShell, PageHeader } from "@/components/shell";
 import { Bar, GlassCard, GradientButton, SectionTitle } from "@/components/kit";
 import { user } from "@/lib/data";
-import { Bell, ChevronRight, HelpCircle, Lock, Ruler } from "lucide-react";
+import { useUserName } from "@/lib/user-name";
+import { Bell, ChevronRight, HelpCircle, Lock, Pencil, Ruler } from "lucide-react";
 
 export const Route = createFileRoute("/profile")({
   head: () => ({
