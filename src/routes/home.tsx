@@ -4,6 +4,7 @@ import { Area, AreaChart, ResponsiveContainer, Tooltip, YAxis } from "recharts";
 import { AppShell } from "@/components/shell";
 import { Bar, Chip, GlassCard, GradientButton, Ring, SectionTitle, StatTile } from "@/components/kit";
 import { rings, todayWorkout, user, weightTrend } from "@/lib/data";
+import { useUserName } from "@/lib/user-name";
 import { Brain, Droplets, Flame, HeartPulse, Moon, Trophy, Users, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -29,13 +30,14 @@ const challenges = [
 function HomePage() {
   const [mood, setMood] = useState<number | null>(3);
   const [xpPop, setXpPop] = useState(false);
+  const { firstName } = useUserName();
 
   return (
     <AppShell>
       <header className="animate-rise mb-5 flex items-center justify-between">
         <div>
           <p className="text-xs text-muted-foreground">Sunday, 9 August</p>
-          <h1 className="text-2xl font-bold">Good Morning, {user.name}! 💪</h1>
+          <h1 className="text-2xl font-bold">Good Morning, {firstName}! 💪</h1>
         </div>
         <Link to="/gamification" className="press glass relative flex h-11 w-11 items-center justify-center rounded-full text-lg">
           {user.avatar}
