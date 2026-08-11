@@ -24,6 +24,20 @@ const settings = [
 ];
 
 function Profile() {
+  const { fullName, setFullName } = useUserName();
+  const [editing, setEditing] = useState(false);
+  const [draft, setDraft] = useState(fullName);
+
+  const startEdit = () => {
+    setDraft(fullName);
+    setEditing(true);
+  };
+
+  const save = () => {
+    setFullName(draft);
+    setEditing(false);
+  };
+
   return (
     <AppShell>
       <PageHeader title="Profile" />
@@ -31,7 +45,32 @@ function Profile() {
       <GlassCard glow="brand" className="animate-rise flex items-center gap-4">
         <div className="grad-brand flex h-16 w-16 items-center justify-center rounded-2xl text-3xl">{user.avatar}</div>
         <div className="flex-1">
-          <div className="text-lg font-bold">{user.name} Mehta</div>
+          {editing ? (
+            <div className="flex items-center gap-2">
+              <input
+                value={draft}
+                autoFocus
+                onChange={(e) => setDraft(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && save()}
+                aria-label="Your name"
+                className="min-w-0 flex-1 rounded-full border border-border bg-white/5 px-3 py-1.5 text-sm font-semibold text-foreground outline-none focus:border-secondary"
+              />
+              <button onClick={save} className="press text-xs font-bold text-secondary">
+                Save
+              </button>
+            </div>
+          ) : (
+            <div className="flex items-center gap-2">
+              <div className="text-lg font-bold">{fullName}</div>
+              <button
+                onClick={startEdit}
+                aria-label="Edit name"
+                className="press flex items-center gap-1 rounded-full border border-border bg-white/5 px-2 py-0.5 text-[10px] font-semibold text-secondary"
+              >
+                <Pencil size={11} /> Edit
+              </button>
+            </div>
+          )}
           <div className="mt-1 flex items-center gap-2">
             <span className="rounded-full bg-primary/20 px-2 py-0.5 text-[10px] font-bold text-primary">
               Lv {user.level} · {user.title}
@@ -41,6 +80,7 @@ function Profile() {
           <Bar value={user.xp} goal={user.xpToNext} className="mt-2 h-1.5" />
         </div>
       </GlassCard>
+
 
       <div className="mt-3 grid grid-cols-3 gap-3">
         {[
